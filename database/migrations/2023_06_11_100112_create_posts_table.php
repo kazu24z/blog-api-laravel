@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class () extends Migration {
     /**
      * Run the migrations.
      */
@@ -14,7 +13,7 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id('post_id');
             $table->foreignId('admin_id')->constrained('admins', 'admin_id');
-            $table->foreignId('category_id')->constrained('categories', 'category_id');
+            $table->foreignId('category_id')->nullable()->constrained('categories', 'category_id')->nullOnDelete();
             $table->string('title')->nullable();
             $table->text('content')->nullable();
             $table->string('status')->default('draft');
